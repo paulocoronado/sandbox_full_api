@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Paciente": {
+      "type": "object",
+      "properties": {
+        "cedula": {
+          "type": "integer"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        },
+        "fechaNacimiento": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "telefono": {
+          "type": "string"
+        },
+        "Cita": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cita"
+          }
+        }
+      }
+    },
+    "Medico": {
+      "type": "object",
+      "properties": {
+        "cedula": {
+          "type": "integer"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        },
+        "consultorio": {
+          "type": "string"
+        },
+        "correo": {
+          "type": "string"
+        },
+        "especialidad": {
+          "$ref": "#/definitions/Especialidad"
+        },
+        "Cita": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cita"
+          }
+        }
+      }
+    },
+    "Especialidad": {
+      "type": "object",
+      "properties": {
+        "idEspecialidad": {
+          "type": "integer"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "Medico": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Medico"
+          }
+        }
+      }
+    },
+    "Cita": {
+      "type": "object",
+      "properties": {
+        "idCita": {
+          "type": "integer"
+        },
+        "fechaHora": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Paciente": {
+          "$ref": "#/definitions/Paciente"
+        },
+        "Medico": {
+          "$ref": "#/definitions/Medico"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "paciente": {
+      "$ref": "#/definitions/Paciente"
+    },
+    "medico": {
+      "$ref": "#/definitions/Medico"
+    },
+    "especialidad": {
+      "$ref": "#/definitions/Especialidad"
+    },
+    "cita": {
+      "$ref": "#/definitions/Cita"
+    }
+  }
+}

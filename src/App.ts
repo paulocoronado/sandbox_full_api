@@ -3,6 +3,10 @@ import swaggerUi from 'swagger-ui-express'
 import { swaggerSpec } from './swagger.conf'
 import PacienteRouter from './routes/Paciente.routes'
 import MedicoRouter from './routes/Medico.routes'
+import FormStructureRouter from './routes/FormStructure.routes'
+
+//Use cors
+import cors from 'cors'
 
 /**
  * Clase que representa la aplicación
@@ -35,14 +39,14 @@ class App {
 	private config(): void {
 		this.app.use(express.json())    
 		this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+		this.app.use(cors())
 	}
 
 	private routes(): void {
-		this.app.get('/', (req: Request, res: Response) => {
-			res.send('Bienvenido a nuestra API')
-		})
+		
 		this.app.use('/', PacienteRouter)
 		this.app.use('/', MedicoRouter)
+		this.app.use('/', FormStructureRouter)
 	}
 
 	public listen(): void {
