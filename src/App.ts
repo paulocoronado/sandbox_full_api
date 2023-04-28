@@ -41,8 +41,8 @@ class App {
 		this.app.get('/', (req: Request, res: Response) => {
 			res.send('Bienvenido a nuestra API')
 		})
-		this.app.use('/api/v1', PacienteRouter)
-		this.app.use('/api/v1', MedicoRouter)
+		this.app.use('/', PacienteRouter)
+		this.app.use('/', MedicoRouter)
 	}
 
 	public listen(): void {

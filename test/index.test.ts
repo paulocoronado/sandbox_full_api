@@ -1,8 +1,8 @@
 import request from 'supertest';
-import App from '../src/Router';
+import App from '../src/App';
 
 describe('GET /', () => {
-  let app: App;
+  let app: App
 
   beforeAll(() => {
     app = new App();
